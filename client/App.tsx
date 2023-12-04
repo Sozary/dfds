@@ -1,11 +1,11 @@
 import React from "react";
-import Button from "@mui/material/Button";
+import Calendar from "./components/Calendar";
 
-const App: React.FC = () => {
+const App = () => {
   return (
-    <>
-      <DateCalendar />
-    </>
+    <div>
+      <Calendar />
+    </div>
   );
 };
 
