@@ -3,14 +3,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
-const app = (0, express_1.default)();
-const port = process.env.PORT;
-app.get("/", (req, res) => {
-    res.send("Express + TypeScript Server");
+var express_1 = __importDefault(require("express"));
+var path_1 = __importDefault(require("path"));
+var app = (0, express_1.default)();
+app.use(express_1.default.static(path_1.default.join(__dirname, "../public")));
+app.get("/", function (req, res, next) {
+    try {
+        res.send("index.html");
+    }
+    catch (error) {
+        next(error);
+    }
 });
-app.listen(port, () => {
-    console.log(`[server]: Server is running at http://localhost:${port}`);
+var PORT = 3000;
+app.listen(PORT, function () {
+    console.log("App listening on port ".concat(PORT));
 });
